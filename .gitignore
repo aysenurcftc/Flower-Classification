@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.pipenv/
+.pyenv/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# PyCharm and IDE specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# Cache files
+*.cache
+*.log
+*.tmp
+
+# ML/DL files
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.onnx
+*.pb
+*.tflite
+
+# Dataset and data processing files
+data/
+datasets/
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+*.pkl
+*.zip
+*.tar.gz
+
+# Model artifacts
+models/
+saved_models/
+*.joblib
+
+# Python packaging
+build/
+dist/
+*.egg
+*.manifest
+
+/dataset
+/data
+/notebook/.ipynb_checkpoints
+/src/wandb
