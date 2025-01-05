@@ -8,7 +8,7 @@ name = f"ViT_{config['BATCH_SIZE']}_bs_{config['LEARNING_RATE']}_lr_{config['NUM
 
 wandb.init(
     project="vision-transformer-training",
-    name= name,
+    name=name,
     config={
         "epochs": config["NUM_EPOCHS"],
         "batch_size": config["BATCH_SIZE"],
@@ -78,7 +78,7 @@ def main():
     # Setup loss function and optimizer
     loss_fn, optimizer = setup_loss_and_optimizer(model_instance, LEARNING_RATE)
 
-    results= engine.train(
+    results = engine.train(
         model=model_instance,
         train_dataloader=train_dataloader,
         test_dataloader=test_dataloader,
@@ -91,7 +91,7 @@ def main():
     target_dir = "../models/"
 
     save_model(
-       model_instance,
+        model_instance,
         target_dir,
         model_name=f"pretrained_vit16_{BATCH_SIZE}_batch-size_{LEARNING_RATE}_learning-rate_{NUM_EPOCHS}_epochs.pt",
     )

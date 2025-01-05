@@ -114,7 +114,7 @@ def test_step(
                         wandb.Image(img.transpose(1, 2, 0)),
                         pred,
                         label,
-                        *score
+                        *score,
                     )
                 log_counter += 1
 
@@ -137,7 +137,9 @@ def train(
 
     results = {"train_loss": [], "train_acc": [], "test_loss": [], "test_acc": []}
 
-    columns = ["id", "image", "guess", "truth"] + [f"score_{i}" for i in range(config["class_names"])]
+    columns = ["id", "image", "guess", "truth"] + [
+        f"score_{i}" for i in range(config["class_names"])
+    ]
     test_table = wandb.Table(columns=columns)
 
     # loop through training and testing steps for a number of epochs
@@ -150,7 +152,12 @@ def train(
             device=device,
         )
         test_loss, test_acc, test_table = test_step(
-            model=model, dataloader=test_dataloader, loss_fn=loss_fn, device=device, log_counter=0, test_table=test_table,
+            model=model,
+            dataloader=test_dataloader,
+            loss_fn=loss_fn,
+            device=device,
+            log_counter=0,
+            test_table=test_table,
         )
 
         wandb.log({"test_predictions": test_table})
@@ -181,4 +188,3 @@ def train(
 
     wandb.finish()
     return results
-

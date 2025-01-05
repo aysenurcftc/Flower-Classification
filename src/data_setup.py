@@ -80,4 +80,4 @@ class ImageFolder(Dataset):
         if self.transform:
             return self.transform(img), class_idx
         else:
-            return img, class_idx
+            return img, class_idx, class_name

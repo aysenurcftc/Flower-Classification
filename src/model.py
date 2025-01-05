@@ -41,5 +41,3 @@ class VisionTransformer(nn.Module):
             return self.vit_weights.transforms()
         else:
             raise ValueError("Transforms are only available for pretrained models.")
-
-
