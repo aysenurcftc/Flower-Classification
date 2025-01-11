@@ -37,9 +37,12 @@ def save_model(model: torch.nn.Module, target_dir: str, model_name: str):
 
 
 def load_model(model_path: str):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = VisionTransformer(num_classes=5)
     transforms = model.get_transforms()
-    model.load_state_dict(torch.load(model_path, weights_only=True))
+    model.load_state_dict(
+        torch.load(model_path, weights_only=True, map_location=device)
+    )
     model.eval()
     return model, transforms
 

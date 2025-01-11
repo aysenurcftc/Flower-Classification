@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Image Classification</h1>
+        <label for="imageInput" class="custom-button">Choose File</label>
+        <input type="file" id="imageInput" accept="image/*">
+        <button class="classify-btn" onclick="uploadImage()">Classify</button>
+        <p id="predictionResult"></p>
+    </div>
+
+    <script type="text/javascript">
+        async function uploadImage() {
+            const input = document.getElementById('imageInput');
+            if (!input.files[0]) {
+                alert("Please select a file to upload");
+                return;
+            }
+            const file = input.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict-image/', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.json();
+                document.getElementById('predictionResult').textContent =
+                    `Prediction: ${result.label},  Probability: ${(result.probability * 100).toFixed(2)}%`;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed');
+            }
+        }
+    </script>
+
+</body>
+</html>
